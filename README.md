@@ -53,21 +53,33 @@ This utility is particularly useful for:
 ### CLI Usage
 
 ```commandline
->python pysshpass.py --help
-Usage: pysshpass.py [OPTIONS]
+pysshpass --help
+Usage: pysshpass [OPTIONS]
+
+  SSH Client for running remote commands.
+
+  Sample Usage: pysshpass -h "172.16.1.101" -u "cisco" -p "cisco" -c "term len
+  0,show users,show run,show cdp neigh,show int desc" --invoke-shell --prompt
+  "#" --prompt-count 4 -t 15
 
 Options:
-  -h, --host TEXT         SSH Host (ip:port)  [required]
-  -u, --user TEXT         SSH Username  [required]
-  -p, --password TEXT     SSH Password  [required]
-  -c, --cmds TEXT         Commands to run, separated by comma
-  --invoke-shell          Invoke shell before running the command
-  --prompt TEXT           Prompt to look for before breaking the shell     
-  --prompt-count INTEGER  Number of prompts to look for before breaking the
-                          shell
-  -t, --timeout INTEGER   Command timeout duration in seconds
-  --help                  Show this message and exit.
-
+  -h, --host TEXT                 SSH Host (ip:port)  [required]
+  -u, --user TEXT                 SSH Username  [required]
+  -p, --password TEXT             SSH Password  [required]
+  -c, --cmds TEXT                 Commands to run, separated by comma
+  --invoke-shell                  Invoke shell before running the command
+                                  [default=True]
+  --prompt TEXT                   Prompt to look for before breaking the shell
+  --prompt-count INTEGER          Number of prompts to look for before
+                                  breaking the shell
+  -t, --timeout INTEGER           Command timeout duration in seconds
+  --auto-add-policy               Automatically add the host key
+                                  [default=True]
+  --look-for-keys                 Look for local SSH key [default=False]
+  -i, --inter-command-time INTEGER
+                                  Inter-command time in seconds [default is 1
+                                  second]
+  --help                          Show this message and exit.
 
 
 ```
