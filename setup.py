@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='pysshpass',
-    version='0.1.0',
-    description='Python-based SSH client designed to offer a multiplatform alternative to `sshpass`.',
+    version='0.1.1',
+    description='Python-based SSH client designed to offer a multiplatform alternative to Netmiko or `sshpass`.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='Scott Peterman',

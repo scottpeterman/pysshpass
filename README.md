@@ -105,3 +105,39 @@ Options:
 - A timer (`timeout`) ensures the script doesn't hang indefinitely waiting for a prompt.
 
 ---
+
+## More Usage Examples
+- Commands are comma separated. Repeated comma's represent blank carriage returns, which can be useful in making sure you hit your expected prompt count instead of waiting for timeout
+
+#### 1. Cisco Router
+```markdown
+- **Device**: Cisco Router
+- **Command**: show version
+- **Usage**:
+  ```
+  pysshpass -h "192.168.1.1" -u "admin" -p "password" -c "terminal length 0,show version" --invoke-shell --prompt "#" --prompt-count 3 -t 10
+  ```
+#### 2. Aruba Switch
+```markdown
+- **Device**: Aruba Switch
+- **Command**: show interfaces brief
+- **Usage**:
+  ```
+  pysshpass -h "192.168.1.2" -u "admin" -p "password" -c "no paging,show interfaces brief" --invoke-shell --prompt ">" --prompt-count 2 -t 10
+  ```
+  
+#### 3. Palo Alto Firewall
+```markdown
+- **Device**: Palo Alto Firewall
+- **Command**: show system info
+- **Usage**:
+  ```
+  pysshpass -h "192.168.1.3" -u "admin" -p "password" -c "set cli pager off,show system info,," --invoke-shell --prompt ">" --prompt-count 2 -t 10
+  ```
+
+### General Tips
+- Adjust the `--prompt-count` and `--timeout` parameters based on the expected number of prompts and network responsiveness.
+- Ensure that IP addresses, usernames, and passwords are correctly configured for your specific setup.
+- Adjust "," for carriage returns and prompt count as needed
+
+---

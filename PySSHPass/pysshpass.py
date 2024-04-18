@@ -32,7 +32,7 @@ def read_output(channel, output_queue, prompt, prompt_count):
 @click.option('--user', '-u', required=True, help='SSH Username')
 @click.option('--password', '-p', required=True, help='SSH Password')
 @click.option('--cmds', '-c', default='', help='Commands to run, separated by comma')
-@click.option('--invoke-shell', is_flag=True, help='Invoke shell before running the command [default=True]')
+@click.option('--invoke-shell', is_flag=True, help='Invoke shell before running the command [default=False]')
 @click.option('--prompt', default='', help='Prompt to look for before breaking the shell')
 @click.option('--prompt-count', default=1, help='Number of prompts to look for before breaking the shell')
 @click.option('--timeout', '-t', default=5, help='Command timeout duration in seconds')
