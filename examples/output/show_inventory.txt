@@ -1,0 +1,27 @@
+usa1-rtr-1#show inventory
+NAME: "Chassis", DESCR: "Cisco 7206VXR, 6-slot chassis"
+PID: CISCO7206VXR      , VID:    , SN: 4279256517
+
+NAME: "NPE400 0", DESCR: "Cisco 7200VXR Network Processing Engine NPE-400"
+PID: NPE-400           , VID:    , SN: 11111111
+
+NAME: "module 0", DESCR: "I/O FastEthernet (TX-ISL)"
+PID: C7200-IO-FE-MII/RJ45=, VID:    , SN: 4294967295
+
+NAME: "module 1", DESCR: "Ethernet"
+PID: PA-4E=            , VID:    , SN: 4294967295
+
+NAME: "module 2", DESCR: "Ethernet"
+PID: PA-4E=            , VID:    , SN: 4294967295
+
+NAME: "module 3", DESCR: "Ethernet"
+PID: PA-4E=            , VID:    , SN: 4294967295
+
+NAME: "Power Supply 1", DESCR: "Cisco 7200 AC Power Supply"
+PID: PWR-7200-AC       , VID:    , SN:
+
+NAME: "Power Supply 2", DESCR: "Cisco 7200 AC Power Supply"
+PID: PWR-7200-AC       , VID:    , SN:
+
+
+usa1-rtr-1#

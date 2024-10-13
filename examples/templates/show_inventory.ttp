@@ -1,0 +1,2 @@
+NAME: "{{ name | ORPHRASE }}", DESCR: "{{ desc  | ORPHRASE }}"
+PID: {{ pid | ORPHRASE | default('unknown') }} , {{ rest_of_line | ORPHRASE | default('unknown')}}
