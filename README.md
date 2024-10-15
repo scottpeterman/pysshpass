@@ -256,6 +256,53 @@ This template extracts details from the `show inventory` command, such as the pr
 
 ---
 
+### New Feature: Dynamic Prompt Detection (`find_prompt`)
+
+In the latest update, `pysshpass` includes a powerful `find_prompt` feature, which dynamically detects the shell prompt if not explicitly provided by the user. This is particularly useful when connecting to devices with unknown or varying prompt characters, such as network equipment with custom prompts.
+
+#### Key Features of `find_prompt`:
+- **Automatic Detection**: If no prompt is specified, `pysshpass` will attempt to detect common prompt characters like `#`, `>`, or `$`.
+- **Custom Prompt Matching**: You can customize the characters or strings to look for when identifying the prompt, allowing flexibility for unique prompt configurations.
+- **Seamless Integration**: The `find_prompt` method is automatically called if the `--prompt` option is left blank, making it easy to integrate into your existing automation workflows.
+
+#### Example Usage
+
+If you don’t know the prompt for a device, simply leave the `--prompt` option blank, and `pysshpass` will try to find it for you:
+
+```bash
+pysshpass -h "192.168.1.1" -u "admin" -p "password" -c "show version,show interfaces" --invoke-shell --prompt-count 2 -t 15
+```
+
+If you want to customize the characters that are detected as a prompt, you can specify them when using `pysshpass` as a library:
+
+```python
+ssh_client = SSHClientWrapper(
+    host="192.168.1.1",
+    user="admin",
+    password="password",
+    invoke_shell=True,
+    prompt="",  # Empty prompt to enable dynamic prompt detection
+    prompt_count=1,
+    timeout=10
+)
+
+# Connect to the device and dynamically find the prompt (e.g., detecting '#' or '>')
+ssh_client.connect()
+detected_prompt = ssh_client.find_prompt(ends_with=('#', '>'))
+print(f"Detected prompt: {detected_prompt}")
+
+# Continue running commands after detecting the prompt
+ssh_client.cmds = "show version"
+output = ssh_client.run_commands()
+ssh_client.close()
+```
+
+In this example, `find_prompt` will look for `#` or `>` at the end of a line to detect the prompt dynamically. You can easily modify the `ends_with` parameter to handle custom prompts (e.g., `ends_with=('$', '%')` for Unix-like systems).
+
+This new feature makes `pysshpass` more adaptable to diverse environments, ensuring that you can automate SSH interactions even when the exact prompt is not known beforehand.
+
+--- 
+
 ## Appendix B: Build Instructions
 
 To build and test `pysshpass` locally, follow the steps below:

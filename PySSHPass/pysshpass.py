@@ -196,6 +196,44 @@ class SSHClientWrapper:
             channel.send(command + '\n')
         self.log(cmd_msg)
 
+    def find_prompt(self, timeout=10, ends_with=None):
+        """
+        Dynamically find the prompt by reading the shell output until a line ends with a typical prompt character
+        or a user-specified string.
+        Returns the detected prompt.
+        """
+        if ends_with is None:
+            # Default prompt characters if not provided
+            ends_with = ('>', '#', '$')
+
+        self.open_shell()  # Ensure the shell is open
+        self.shell_channel.settimeout(timeout)
+        buffer_size = 4096
+        output = ""
+
+        try:
+            end_time = time.time() + timeout  # Calculate the absolute end time
+            self.run_command_in_shell(self.shell_channel, command="\n")
+            while time.time() < end_time:
+                if self.shell_channel.recv_ready():
+                    output_chunk = self.shell_channel.recv(buffer_size).decode('utf-8')
+                    output += output_chunk
+
+                    # Split the output into lines and check if any ends with a character or string in ends_with
+                    lines = output.split("\n")
+                    for line in lines:
+                        # Check if the line ends with any of the characters/strings in ends_with
+                        if line.strip().endswith(ends_with):
+                            self.prompt = line.strip()  # Set the detected prompt
+                            return self.prompt
+
+                time.sleep(0.1)
+
+        except Exception as e:
+            self.log(f"Error while detecting prompt: {str(e)}", error=True)
+
+        # If the loop completes without finding a prompt, return an empty string
+        return ""
 
     def close(self):
         self.log(self.exit_reason)

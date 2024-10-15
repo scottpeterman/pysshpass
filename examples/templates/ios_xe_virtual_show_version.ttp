@@ -1,0 +1,1 @@
+Cisco IOS Software, {{ platform }} Software ({{ image }}), Version {{ version }}, {{ description | re('.*')}}

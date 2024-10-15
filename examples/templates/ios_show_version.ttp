@@ -1,0 +1,2 @@
+Cisco IOS Software, {{ ver_major | ORPHRASE }}, RELEASE SOFTWARE ({{ver_release}})
+{{ device }} uptime is {{ uptime | ORPHRASE }}

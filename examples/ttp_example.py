@@ -27,7 +27,7 @@ def test_ssh_client_with_ttp():
     # print("Show Version Output:\n", version_output)
 
     # Step 2: Use TTP to parse the version output
-    version_template_file = './templates/show_version.ttp'  # Path to the TTP template for show version
+    version_template_file = './templates/ios_show_version.ttp'  # Path to the TTP template for show version
     version_parser = TTPParserHelper(ttp_template_file=version_template_file)
     parsed_version = version_parser.parse(version_output)
     print("Parsed Version Output:\n", parsed_version)
