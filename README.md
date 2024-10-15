@@ -16,6 +16,9 @@
 - **Quiet Mode**: A `quiet` flag suppresses printed output when running as a library, but retains output in CLI mode.
 - **Cross-Platform**: Works across Linux, macOS, and Windows.
 
+![TTP MAC Table Output](https://raw.githubusercontent.com/scottpeterman/pysshpass/main/screenshots/ttp_mac.png)
+
+
 ### Example CLI Usage
 
 ```bash
